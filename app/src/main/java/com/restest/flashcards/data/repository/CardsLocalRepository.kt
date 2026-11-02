@@ -24,8 +24,7 @@ class CardsLocalRepository private constructor() {
         _events.value = Event.Success(getCards())
     }
 
-    // Returns successfully fetched cards; throws on network/JSON errors so
-    // the ViewModel can show an error and offer Retry.
+    // task 2
     suspend fun loadDefaultCards(): List<FlashCard> = loadMutex.withLock {
         if (!defaultsLoaded) {
             val response = withContext(Dispatchers.IO) {
@@ -46,6 +45,8 @@ class CardsLocalRepository private constructor() {
         _events.value = Event.CardAdded(newCard)
     }
 
+
+    // task 1
     fun deleteCard(card: FlashCard): List<FlashCard> {
         if (cards.remove(card)) {
             _events.value = Event.Success(getCards())

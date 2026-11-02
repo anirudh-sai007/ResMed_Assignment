@@ -43,13 +43,30 @@ fun FlashCardPager(viewModel: CardsViewModel, navController: NavController) {
     val scope = rememberCoroutineScope()
     Box(modifier = Modifier.fillMaxSize()) {
 
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 72.dp, bottom = 80.dp)
-        ) { page ->
-            FlashCardView(flashCard = cards.value[page])
+//        task 3
+
+        if (cards.value.isEmpty()) {
+
+            Text(
+                text = "No flashcards available",
+                modifier = Modifier
+                    .align(Alignment.Center),
+                style = MaterialTheme.typography.titleMedium
+            )
+
+        } else {
+
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 72.dp, bottom = 80.dp)
+            ) { page ->
+
+                cards.value.getOrNull(page)?.let { card ->
+                    FlashCardView(flashCard = card)
+                }
+            }
         }
 
 

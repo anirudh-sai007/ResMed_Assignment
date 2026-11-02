@@ -25,11 +25,17 @@ import com.restest.flashcards.views.navigation.Screen
 @Composable
 fun FlashCardList(viewModel: CardsViewModel, navController: NavController) {
     val cards by viewModel.cardList.collectAsState()
+
+//    task 3
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
+
+    //task 1
     var cardToDelete by remember { mutableStateOf<FlashCard?>(null) }
 
     Box(modifier = Modifier.fillMaxSize()) {
+
+//        task 3
         if (cards.isNotEmpty()) {
             LazyColumn(
                 modifier = Modifier
@@ -56,6 +62,8 @@ fun FlashCardList(viewModel: CardsViewModel, navController: NavController) {
                                 fontSize = 18.sp
                             )
                         }
+
+
                         IconButton(onClick = { cardToDelete = flashCard }) {
                             Icon(
                                 Icons.Default.Delete,
@@ -124,6 +132,9 @@ fun FlashCardList(viewModel: CardsViewModel, navController: NavController) {
             Icon(Icons.Default.Add, contentDescription = "Create")
         }
     }
+
+
+    //task 1
 
     cardToDelete?.let { card ->
         AlertDialog(

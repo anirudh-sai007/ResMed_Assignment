@@ -19,6 +19,8 @@ class CardsViewModel(
     private val _cardList = MutableStateFlow<List<FlashCard>>(repository.getCards())
     val cardList = _cardList.asStateFlow()
 
+
+//    task 3
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
@@ -43,6 +45,8 @@ class CardsViewModel(
         }
     }
 
+
+//    task 3
     private fun loadCards() {
         if (_isLoading.value) return
         _isLoading.value = true
@@ -62,8 +66,11 @@ class CardsViewModel(
         }
     }
 
+//    task 3
     fun retryLoading() = loadCards()
 
+
+    // task 1
     fun deleteCard(card: FlashCard) {
         _cardList.value = repository.deleteCard(card)
     }
